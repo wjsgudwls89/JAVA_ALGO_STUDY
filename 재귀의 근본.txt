@@ -1,0 +1,38 @@
+﻿원칙 1: 플랫하게 현 상황만 보자.
+ 재귀는 귀납법에 근거한 매우 당연한 이야기를 처리하는 것
+ 함수의 역할을 말로 명확하게 정의
+ 수학적 귀납법에서 명제 정의하는 것 처럼
+ 재귀는 플랫하게 해당 메서드에서 현재 자기 할 일만 처리하자!
+ 다음 상황, 이전 상황까지 고려하지 말것
+
+원칙 2: 반드시 종료하게 하라
+ 기저 조건에서 함수가 제대로 동작함을 보인다.
+ 수학적 귀납법에서 초기 조건을 확인하는 것 처럼
+ 적어도 하나 이상의 base case를 갖고 있어서 종료할 수 있어야 한다.
+ 함수가 작은 입력에 대해 제대로 동작한다고 가정하고 재귀 단계를 작성한다.
+ f(n-1)이 성립한다고 가정하고 f(n)에 대한 함수를 작성한다.
+ 모든 case는 결국 base case로 수렴해야 한다.
+
+원칙 3: 묵시적 매개변수를 명시적 매개변수로 바꿔라
+
+여기서의 묵시적 매개변수 0~ data.length까지에서 찾아라가 생략됨. 반복문의 조건은 재구 ㅣ의 파라미터
+ ‘data에서 target의 index를 반환하라’를 처리할 때
+
+public int search(int [] data, int target) {
+for(int i=0; i<data.length; i++) {
+if(data[i]==target) {
+return i;
+}
+}
+return -1;
+}
+ data의 0부터 data.length에서 target의 index를 반환하라
+public int search(int[] data, int target, int from, int end) {
+if (from > end) {
+return -1;
+} else if (data[from] == target) {
+return from;
+} else {
+return search(data, target, from + 1, end);
+}
+}
